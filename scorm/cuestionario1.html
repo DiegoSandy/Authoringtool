@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cuestionario</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .options input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    input[type="submit"], #verifyBtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function verificarRespuestas() {
+      var respuestasCorrectas = [
+        ['1'], // Respuestas correctas para la pregunta 1 (se pueden seleccionar múltiples opciones)
+        ['1'],      // Respuestas correctas para la pregunta 2
+        ['1'], // Respuestas correctas para la pregunta 3
+        ['1'],      // Respuestas correctas para la pregunta 4
+        ['4']       // Respuestas correctas para la pregunta 5
+      ];
+
+      var preguntas = document.getElementsByClassName('question');
+      var resultado = '';
+
+      for (var i = 0; i < preguntas.length; i++) {
+        var opciones = preguntas[i].querySelectorAll('input[type="checkbox"]:checked');
+        var respuestasUsuario = [];
+
+        for (var j = 0; j < opciones.length; j++) {
+          respuestasUsuario.push(opciones[j].value);
+        }
+
+        var preguntaNumero = i + 1;
+        var esCorrecta = JSON.stringify(respuestasUsuario) === JSON.stringify(respuestasCorrectas[i]);
+
+        resultado = resultado + 'Pregunta ' + preguntaNumero + ': ' + (esCorrecta ? 'Correcta' : 'Incorrecta') + '<br>';
+      }
+
+      document.getElementById('result').innerHTML = resultado;
+      document.getElementById('afterfinish').innerHTML= '<a href="javascript:history.back()"><input type="button" value="Volver al video"></a>' + '<br>' + '<a href="javascript:history.back()"><input type="button" value="Ir al siguiente Video"></a>';
+    }
+  </script>
+</head>
+<body>
+  <h1>Cuestionario</h1>
+  
+  <form>
+    <div class="question">
+      <h2>Pregunta 1: ¿Que es la educacion ambiental?</h2>
+      <div class="options">
+        <label>
+          <input type="checkbox" name="q1[]" value="1">
+          Es un Proceso
+        </label>
+        <label>
+          <input type="checkbox" name="q1[]" value="2">
+          Es un Metodo
+        </label>
+        <label>
+          <input type="checkbox" name="q1[]" value="3">
+          Es una Tarea
+        </label>
+        <label>
+          <input type="checkbox" name="q1[]" value="4">
+          Opción 4
+        </label>
+        <label>
+          <input type="checkbox" name="q1[]" value="5">
+          Opción 5
+        </label>
+      </div>
+    </div>
+    <div class="question">
+        <h2>Pregunta 2: ¿Cual es el objetivo de la educacion ambiental?</h2>
+      <div class="options">
+        <label>
+          <input type="checkbox" name="q2[]" value="1">
+          Promover la conservacion del medio ambiente
+        </label>
+        <label>
+          <input type="checkbox" name="q2[]" value="2">
+          Fomentar el uso de tecnologias obsoletas
+        </label>
+        <label>
+          <input type="checkbox" name="q2[]" value="3">
+          Desarrollar politicas publicas ineficientes
+        </label>
+        <label>
+          <input type="checkbox" name="q2[]" value="4">
+          Opción 4
+        </label>
+        <label>
+          <input type="checkbox" name="q2[]" value="5">
+          Opción 5
+        </label>
+      </div>
+    </div>
+    <div class="question">
+        <h2>Pregunta 3: ¿Que aspectos se consideran en el enfoque global de la educacion ambiental?</h2>
+        <div class="options">
+          <label>
+            <input type="checkbox" name="q3[]" value="1">
+            La interconexion de los sistemas naturales y sociales en el planeta
+          </label>
+          <label>
+            <input type="checkbox" name="q3[]" value="2">
+            La promocion de la desigualdad socioeconomica
+          </label>
+          <label>
+            <input type="checkbox" name="q3[]" value="3">
+            El uso de tecnologias obsoletas 
+          </label>
+          <label>
+            <input type="checkbox" name="q3[]" value="4">
+            Ninguna de las anteriores
+          </label>
+          <label>
+            <input type="checkbox" name="q3[]" value="5">
+            Opción 5
+          </label>
+        </div>
+    </div>
+    <div class="question">
+        <h2>Pregunta 4: ¿Por que es importante el compromiso politico en la educacion ambiental?</h2>
+      <div class="options">
+        <label>
+          <input type="checkbox" name="q4[]" value="1">
+          Porque puede generar politicas publicas que promuevan la sostenibilidad y la proteccion del medio ambiente
+        </label>
+        <label>
+          <input type="checkbox" name="q4[]" value="2">
+          Porque no tiene ningun impacto en la conservacion del medio ambiente
+        </label>
+        <label>
+          <input type="checkbox" name="q4[]" value="3">
+          Porque genera conflictos sociales
+        </label>
+        <label>
+          <input type="checkbox" name="q4[]" value="4">
+          Ninguna de las anteriores
+        </label>
+        <label>
+          <input type="checkbox" name="q4[]" value="5">
+          Opción 5
+        </label>
+      </div>
+    </div>
+    <div class="question">
+        <h2>Pregunta 5: ¿Que trata de reducir la innovacion y la tecnologia en la educacion ambiental?</h2>
+      <div class="options">
+        <label>
+          <input type="checkbox" name="q5[]" value="1">
+          Reducir la radiacion
+        </label>
+        <label>
+          <input type="checkbox" name="q5[]" value="2">
+          Reducir los impactos ambientales entre diferentes grupos sociales
+        </label>
+        <label>
+          <input type="checkbox" name="q5[]" value="3">
+          Reducir agua y energia 
+        </label>
+        <label>
+          <input type="checkbox" name="q5[]" value="4">
+          Reducir el impacto ambiental de las actividades humanas
+        </label>
+        <label>
+          <input type="checkbox" name="q5[]" value="5">
+          Opción 5
+        </label>
+      </div>
+    </div>
+    
+    <!-- Resto de preguntas -->
+    
+    <input type="button" id="verifyBtn" value="Verificar" onclick="verificarRespuestas()">
+  </form>
+  
+  <div id="result"></div>
+  <div id="afterfinish"></div>
