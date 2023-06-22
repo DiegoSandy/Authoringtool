@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+    <title>Hola Mundo WordPress</title>
+    <script type="text7javascript" src="SCORM_API_wrapper.js"></script>
+    <script>
+        //inicializamos el objeto scorm
+        var scorm = pipwerks.SCORM;
+        
+        //Funcion para inicializar el curso
+        function init(){
+            scorm.version = "1.2";
+            Mensaje("Iniciando el Curso.");
+            var callSucceeded = scorm.init();
+            Mensaje("Curso iniciado correctamente? " + callSucceeded);
+        }
+        
+        //Asigna el curso como completado
+        function CompletarCurso(){
+            Mensaje("Marcando curso como Completado.");
+            var callSucceeded = scorm.set("cmi.core.lesson_status", "completed");
+            Mensaje("Curso Completado? " + callSucceeded);
+        }
+        
+        // Pregunta ala plataforma por el nombre del usuario
+        function ObtenerNombre(){
+            var nombreUser = scorm.get("cmi.core.student_name");
+            document.getElementById('Nombre').innerHTML = '<input type="text" value="' + nombreUser + '">';
+        }
+        
+        //Termina la conexion con el LMS
+        function end(){
+            Mensaje("Conexion terminada.");
+            var callSucceeded = scorm.quit();
+            Mensaje("Termino correctamente? " +callSucceeded);
+        }
+        
+        //Manda una Alert al usuario
+        function Mensaje(msg){
+            alert(msg);
+        }
+        
+        //Se ejecuta al cargar la pagina
+        window.onload = function (){
+            init();
+        }
+        
+        //Se ejucuta al terminar la pagina
+        window.onunload = function (){
+            end();
+        }
+    </script>
+    <style>
+        body {
+          text-align: center;
+          margin-top: 100px;
+          font-family: Arial, sans-serif;
+        }
+        h1 {
+          color: #333;
+        }
+        form {
+          margin-top: 30px;
+        }
+        input[type="file"] {
+          margin-bottom: 10px;
+        }
+        input[type="submit"] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!--
+    <h2>Primera conexión a la plataforma LMS</h2>
+    <input type="button" onclick="ObtenerNombre()" value="Obtener Nombre">
+    <input type="button" onclick="CompletarCurso()" value="Completar Curso">
+    <div id="Nombre"></div>
+    -->
+    <h1>Subir Video</h1>
+    <form action="video.html" method="post" enctype="multipart/form-data">
+      <input type="file" name="video" accept="video/*" required>
+      <br>
+      <input type="submit" value="Subir Video">
+    </form>
+    <a href="video.html"><input type="button" value="Ir al video"></a>
+</body>
+</html>
