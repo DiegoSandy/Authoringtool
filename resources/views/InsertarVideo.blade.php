@@ -28,7 +28,8 @@
   <main class="main">
     <div class="container-medio">
       <div class="form-register">
-        <form id="formulario" action="SubirMusic.php" method="post" enctype="multipart/form-data">
+        <form method="POST" action="/CrearVideo" id="formulario" enctype="multipart/form-data">
+          
           <h2 class="form-title">Insertar Video</h2>
           <div class="block">
             <label>Titulo/Tema : </label>
@@ -39,11 +40,12 @@
           </div>
           <div class="block">
             <label>Video: </label>
+            {{ csrf_field() }}
             <input required class="bot1" name="archivo" id="archivo" type="file" accept=".mp4">
           </div>
 
           <div class="botones">
-            <a href=""><button id="btn" class="registrar" type="submit" name="registrar" disabled>Registrar</button></a>
+            <button id="btn" class="registrar" type="submit" name="registrar" >Registrar</button>
 
             <button id="cancelar" class="cancelar" type = "reset" onclick = "desactivar()" >Cancelar</button>
           </div>
@@ -56,7 +58,7 @@
 
   </main>
 
-  <script src="btn.js"></script>
+  <!--<script src="btn.js"></script>-->
 </body>
 
 <footer>

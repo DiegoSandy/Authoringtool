@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListaScormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,5 @@ Route::get('/InsertarVideo', function () {
 Route::get('/InsertarCuestionario', function () {
     return view('InsertarCuestionario');
 });
+
+Route::post('/CrearVideo', [ListaScormController::class, 'CrearVideo']);
